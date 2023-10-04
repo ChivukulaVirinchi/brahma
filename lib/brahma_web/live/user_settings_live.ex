@@ -52,7 +52,8 @@ defmodule BrahmaWeb.UserSettingsLive do
           <.input
             field={@password_form[:website]}
             type="text"
-            id="hidden_user_email" label="Website"
+            id="hidden_user_email"
+            label="Website"
             value={@current_user.website}
           />
           <%!-- <.input

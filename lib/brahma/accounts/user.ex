@@ -7,8 +7,8 @@ defmodule Brahma.Accounts.User do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
-field :website, :string
-field :github, :string
+    field :website, :string
+    field :github, :string
     timestamps()
   end
 
