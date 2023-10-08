@@ -35,3 +35,7 @@ brahma-*.tar
 npm-debug.log
 /assets/node_modules/
 
+/.vscode
+
+.todo
+
