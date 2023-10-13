@@ -1,0 +1,48 @@
+<.header>
+  Listing Links
+  <:actions>
+    <.link patch={~p"/links/new"}>
+      <.button>New Link</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<div id="links" phx-update="stream">
+  <.live_component module={BrahmaWeb.CustomComponent} id={"posts-#{id}"} :for={{id, link} <- @streams.links} link={link} user={link.user} />
+</div>
+
+<%!-- <.table
+  id="links"
+  rows={@streams.links}
+  row_click={fn {_id, link} -> JS.navigate(~p"/links/#{link}") end}>
+  <:col :let={{_id, link}} label="Url"><%= link.url %></:col>
+  <:col :let={{_id, link}} label="Title"><%= link.title %></:col>
+  <:col :let={{_id, link}} label="Likes"><%= link.likes %></:col>
+  <:action :let={{_id, link}}>
+    <div class="sr-only">
+      <.link navigate={~p"/links/#{link}"}>Show</.link>
+    </div>
+    
+  </:action>
+  <:action :let={{id, link}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      <%= id %>
+    </.link>
+    <.link patch={~p"/links/#{link}/edit"}>Edit</.link>
+  </:action>
+</.table>     --%>
+
+<.modal :if={@live_action in [:new, :edit]} id="link-modal" show on_cancel={JS.patch(~p"/links")}>
+  <.live_component
+    module={BrahmaWeb.LinkLive.FormComponent}
+    id={@link.id || :new}
+    title={@page_title}
+    action={@live_action}
+    link={@link}
+    current_user={@current_user}
+    patch={~p"/links"}
+  />
+</.modal>
