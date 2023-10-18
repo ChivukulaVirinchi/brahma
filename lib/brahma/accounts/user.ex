@@ -9,6 +9,7 @@ defmodule Brahma.Accounts.User do
     field :confirmed_at, :naive_datetime
     field :website, :string
     field :github, :string
+    has_many :comments, Brahma.Comments.Comment
     timestamps()
   end
 

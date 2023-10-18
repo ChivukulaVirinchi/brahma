@@ -81,8 +81,9 @@ defmodule Brahma.Feed do
     {1, [link]} =
       from(p in Link, where: p.id == ^id, select: p)
       |> Repo.update_all(inc: [likes: 1])
- link = link |> Repo.preload(:user)
 
+    link = link |> Repo.preload(:user)
+    {:ok, link}
     broadcast({:ok, link}, :link_updated)
   end
 

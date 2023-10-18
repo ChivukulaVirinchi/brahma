@@ -1,14 +1,22 @@
 <.header>
   Listing Links
   <:actions>
-    <.link patch={~p"/links/new"}>
-      <.button>New Link</.button>
+    <.link :if={@current_user} patch={~p"/links/new"}>
+      <.button class="text-white bg-teal-500 rounded-sm">New Link</.button>
     </.link>
   </:actions>
 </.header>
 
-<div id="links" phx-update="stream">
-  <.live_component module={BrahmaWeb.CustomComponent} id={"posts-#{id}"} :for={{id, link} <- @streams.links} link={link} user={link.user} />
+
+<div class="mt-4" id="links" phx-update="stream">
+  <.live_component
+    :for={{id, link} <- @streams.links}
+    module={BrahmaWeb.CustomComponent}
+    id={"posts-#{id}"}
+    link={link}
+    user={link.user}
+    current_user={@current_user}
+  />
 </div>
 
 <%!-- <.table

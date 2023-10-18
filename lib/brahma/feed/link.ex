@@ -7,7 +7,7 @@ defmodule Brahma.Feed.Link do
     field :url, :string
     field :likes, :integer, default: 0
     belongs_to :user, Brahma.Accounts.User
-
+    has_many :comments, Brahma.Comments.Comment
     timestamps()
   end
 

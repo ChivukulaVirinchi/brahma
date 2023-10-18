@@ -22,7 +22,7 @@ defmodule BrahmaWeb.LinkLive.FormComponent do
         <.input field={@form[:title]} type="text" label="Title" />
         <.input field={@form[:url]} type="text" label="Url" />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Link</.button>
+          <.button class="bg-teal-600" phx-disable-with="Saving...">Save Link</.button>
         </:actions>
       </.simple_form>
     </div>

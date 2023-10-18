@@ -71,6 +71,7 @@ defmodule BrahmaWeb.Router do
       live "/links/new", LinkLive.Index, :new
       live "/links/:id/edit", LinkLive.Index, :edit
       live "/links/:id/show/edit", LinkLive.Show, :edit
+
     end
   end
 
@@ -86,6 +87,7 @@ defmodule BrahmaWeb.Router do
       live "/links", LinkLive.Index, :index
 
       live "/links/:id", LinkLive.Show, :show
+      live "/links/:id/comments", CommentLive.Index, :index
     end
   end
 end
