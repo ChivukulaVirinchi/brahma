@@ -1,0 +1,46 @@
+<.live_component
+    module={BrahmaWeb.CustomComponent}
+    id={"posts-#{@link.id}"}
+    link={@link}
+    user={@link.user}
+    current_user={@current_user}
+  />
+
+  <.link class="text-5xl" navigate={~p"/links"}>←</.link>
+<section class="max-w-lg p-6 mx-auto">
+
+
+  <h1 class="text-2xl font-bold">Comments (<%= @comment_count %>)</h1>
+  <.form
+    for={@form}
+    id="comment-form"
+    phx-change="validate"
+    phx-submit="save"
+    
+  >
+    <.input
+      field={@form[:body]}
+      class="w-full p-2 mt-4 text-xs border-b rounded-sm resize-none focus:border-teal-500 placeholder:text-sm"
+      placeholder="Write a comment"
+      type="textarea"
+    />
+
+    <div class="flex items-center space-x-1">
+      <.button
+        class="px-3 py-1 mt-1 text-base font-bold tracking-wide text-white bg-teal-500 border rounded-lg hover:bg-teal-600"
+        phx-disable-with="Posting..."
+      >
+        Post
+      </.button>
+    </div>
+  </.form>
+
+  <div id="comments" phx-update="stream" class="mt-4 space-y-4">
+    <.live_component
+      :for={{id, comment} <- @streams.comments}
+      module={BrahmaWeb.CommentComponent}
+      comment={comment}
+      id={id}
+    />
+  </div>
+</section>

@@ -1,0 +1,5 @@
+☐ Only user should delete/edit posts
+☐ Like/comment functionality works for all users
+☐ Comments
+
+☐ Comments should be stored in a database table with fields for the post_id, user_id, comment_text, date_created
